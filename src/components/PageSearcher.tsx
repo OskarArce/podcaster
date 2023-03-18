@@ -1,6 +1,10 @@
+import { usePodcast } from "~/contexts/podcast";
+
 export default function PageHeader() {
+  const [podcasts, { setSearch }] = usePodcast();
+
   return (
-    <form class="flex w-full lg:ml-0" action="#" method="GET">
+    <form class="flex w-full lg:ml-0">
       <label for="search-field" class="sr-only">
         Search
       </label>
@@ -25,6 +29,8 @@ export default function PageHeader() {
           placeholder="Search"
           type="search"
           name="search"
+          value={podcasts.search}
+          onInput={(e) => setSearch(e.currentTarget.value)}
         />
       </div>
     </form>
