@@ -20,7 +20,7 @@ export type Podcast = {
   name: string;
   title: string;
   description: string;
-  image: string;
+  image: string | undefined;
 };
 
 export type PodcastEpisode = {

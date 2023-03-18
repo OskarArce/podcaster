@@ -11,8 +11,11 @@ import {
   Scripts,
   Title,
 } from "solid-start";
+import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
 import Header from "./components/Header";
 import "./root.css";
+
+const queryClient = new QueryClient();
 
 export default function Root() {
   return (
@@ -26,12 +29,14 @@ export default function Root() {
       <Body class="h-full">
         <Suspense>
           <ErrorBoundary>
-            <div class="min-h-full">
-              <Header />
-              <Routes>
-                <FileRoutes />
-              </Routes>
-            </div>
+            <QueryClientProvider client={queryClient}>
+              <div class="min-h-full">
+                <Header />
+                <Routes>
+                  <FileRoutes />
+                </Routes>
+              </div>
+            </QueryClientProvider>
           </ErrorBoundary>
         </Suspense>
         <Scripts />
