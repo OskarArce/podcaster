@@ -1,9 +1,10 @@
+import Page from "~/components/Page";
+import PageSearcher from "~/components/PageSearcher";
+
 export default function Home() {
   return (
-    <main class="text-center mx-auto text-gray-700 p-4">
-      <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">
-        Vista principal
-      </h1>
-    </main>
+    <Page header={PageSearcher}>
+      Home page
+    </Page>
   );
 }
