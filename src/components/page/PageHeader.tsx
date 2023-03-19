@@ -1,4 +1,6 @@
-export default function PageHeader({ children }) {
+import { JSX } from "solid-js";
+
+export default function PageHeader({ children }: {children: JSX.Element}) {
   return (
     <header class="bg-white shadow-sm">
       <div class="mx-auto max-w-7xl py-4 px-4">

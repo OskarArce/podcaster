@@ -1,8 +1,8 @@
 import { useIsRouting, useLocation, A } from "solid-start";
 import { Show } from "solid-js";
-import NProgress from "./NProgress";
+import NProgress from "./base/BaseNProgress";
 
-export default function Header() {
+export default function TheHeader() {
   const isRouting = useIsRouting();
   const location = useLocation();
   const active = (path: string) =>

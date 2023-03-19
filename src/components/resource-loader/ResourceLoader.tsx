@@ -1,14 +1,13 @@
-import { Switch, Match, For } from "solid-js";
+import { ResponseError } from "solid-start";
+import { Switch, Match, JSX } from "solid-js";
 import { type CreateQueryResult } from "@tanstack/solid-query";
 
-export default function PageTitle({
+export default function ResourceLoader({
   query,
   children,
-  ...props
 }: {
   query: CreateQueryResult<false | readonly any[] | null | undefined, unknown>;
-  children: any;
-  class?: string;
+  children: JSX.Element;
 }) {
   return (
     <Switch>
@@ -16,13 +15,9 @@ export default function PageTitle({
         <p>Loading...</p>
       </Match>
       <Match when={query.isError}>
-        <p>Error: {query.error.message}</p>
+        <p>Error: {(query.error as ResponseError).message}</p>
       </Match>
-      <Match when={query.isSuccess}>
-        <ul class={props.class}>
-          <For each={query.data}>{children}</For>
-        </ul>
-      </Match>
+      <Match when={query.isSuccess}>{children}</Match>
     </Switch>
   );
 }

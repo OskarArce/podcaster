@@ -1,9 +1,9 @@
-import Cell from "~/components/Cell";
-import PodcastItem from "~/components/PodcastItem";
+import Cell from "~/components/cell/Cell";
+import PodcastItem from "~/components/podcast/PodcastItem";
 import { createPodcastsQuery } from "~/client";
 import { type Podcast } from "~/types";
 
-export default function PodcastCell() {
+export default function CellPodcast() {
   const query = createPodcastsQuery();
 
   return (

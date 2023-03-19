@@ -1,6 +1,6 @@
-import "./NProgress.css";
+import "./BaseNProgress.css";
 
-export default function NProgress() {
+export default function BaseNProgress() {
   return (
     <div class="loader">
       <svg class="circular">

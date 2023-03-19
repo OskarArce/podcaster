@@ -1,7 +1,7 @@
 import { Show } from "solid-js";
 import { usePodcast } from "~/contexts/podcast";
 
-export default function PageSearcher() {
+export default function PodcastSearcher() {
   const [podcasts, { setSearch, getTopSearch }] = usePodcast();
 
   return (
