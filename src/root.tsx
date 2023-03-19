@@ -13,6 +13,7 @@ import {
 } from "solid-start";
 import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
 import { PodcastProvider } from "~/contexts/podcast";
+import { PodcastEpisodeProvider } from "~/contexts/podcast-episode";
 import ResourceLoaderPodcast from "~/components/resource-loader/ResourceLoaderPodcast";
 import TheHeader from "~/components/TheHeader";
 import "./root.css";
@@ -33,14 +34,16 @@ export default function Root() {
           <ErrorBoundary>
             <QueryClientProvider client={queryClient}>
               <PodcastProvider>
-                <div class="min-h-full">
-                  <TheHeader />
-                  <ResourceLoaderPodcast>
-                    <Routes>
-                      <FileRoutes />
-                    </Routes>
-                  </ResourceLoaderPodcast>
-                </div>
+                <PodcastEpisodeProvider>
+                  <div class="min-h-full">
+                    <TheHeader />
+                    <ResourceLoaderPodcast>
+                      <Routes>
+                        <FileRoutes />
+                      </Routes>
+                    </ResourceLoaderPodcast>
+                  </div>
+                </PodcastEpisodeProvider>
               </PodcastProvider>
             </QueryClientProvider>
           </ErrorBoundary>

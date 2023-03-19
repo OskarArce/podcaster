@@ -7,7 +7,7 @@ export default function Page({
   header = PageTitle,
 }: {
   children: JSX.Element;
-  header: JSX.Element;
+  header?: JSX.Element;
 }) {
   return (
     <>

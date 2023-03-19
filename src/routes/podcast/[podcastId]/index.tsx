@@ -1,13 +1,9 @@
-import { useParams } from "solid-start";
+import PodcastDetailEpisodes from "~/components/podcast-detail/PodcastDetailEpisodes";
 
-export default function Home() {
-  const { podcastId } = useParams();
-
+export default function PodcastDetail() {
   return (
-    <main class="text-center mx-auto text-gray-700 p-4">
-      <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">
-        Podcast detail - {podcastId}
-      </h1>
-    </main>
+    <div class="text-center mx-auto text-gray-700 pl-4">
+      <PodcastDetailEpisodes />
+    </div>
   );
 }
