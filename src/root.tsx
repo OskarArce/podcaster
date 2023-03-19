@@ -12,6 +12,8 @@ import {
   Title,
 } from "solid-start";
 import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
+import { PodcastProvider } from "~/contexts/podcast";
+import ResourceLoaderPodcast from "~/components/resource-loader/ResourceLoaderPodcast";
 import TheHeader from "~/components/TheHeader";
 import "./root.css";
 
@@ -30,12 +32,16 @@ export default function Root() {
         <Suspense>
           <ErrorBoundary>
             <QueryClientProvider client={queryClient}>
-              <div class="min-h-full">
-                <TheHeader />
-                <Routes>
-                  <FileRoutes />
-                </Routes>
-              </div>
+              <PodcastProvider>
+                <div class="min-h-full">
+                  <TheHeader />
+                  <ResourceLoaderPodcast>
+                    <Routes>
+                      <FileRoutes />
+                    </Routes>
+                  </ResourceLoaderPodcast>
+                </div>
+              </PodcastProvider>
             </QueryClientProvider>
           </ErrorBoundary>
         </Suspense>
