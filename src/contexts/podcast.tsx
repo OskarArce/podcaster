@@ -7,14 +7,18 @@ import { type Podcast } from "~/types";
 export type PodcastContextState = {
   readonly top: Podcast[];
   readonly search: string;
+  readonly selected: string;
   readonly expiration: number;
 };
+
 export type PodcastContextValue = [
   state: PodcastContextState,
   actions: {
     setTop: (top: Podcast[]) => void;
     setSearch: (search: string) => void;
+    setSelected: (selected: string) => void;
     getTopSearch: () => Podcast[];
+    getSelected: () => Podcast | undefined;
     isExpired: () => boolean;
   }
 ];
@@ -22,6 +26,7 @@ export type PodcastContextValue = [
 const defaultState = {
   top: [],
   search: "",
+  selected: "",
   expiration: Date.now(),
 };
 
@@ -30,7 +35,9 @@ const PodcastContext = createContext<PodcastContextValue>([
   {
     setTop: () => undefined,
     setSearch: () => undefined,
+    setSelected: () => undefined,
     getTopSearch: () => [],
+    getSelected: () => undefined,
     isExpired: () => true,
   },
 ]);
@@ -38,11 +45,13 @@ const PodcastContext = createContext<PodcastContextValue>([
 export const PodcastProvider: ParentComponent<{
   top?: Podcast[];
   search?: string;
+  selected?: string;
   expiration?: number;
 }> = (props) => {
   const [state, setState] = createStore({
     top: props.top ?? defaultState.top,
     search: props.search ?? defaultState.search,
+    selected: props.selected ?? defaultState.selected,
     expiration: props.expiration ?? defaultState.expiration,
   });
 
@@ -50,16 +59,35 @@ export const PodcastProvider: ParentComponent<{
     setState("top", top);
     setState("expiration", Date.now() + CONFIG.CACHE_TIME);
   };
+
   const setSearch = (search: string) => {
     setState("search", search);
   };
+
+  const setSelected = (selected: string) => {
+    setState("selected", selected);
+  };
+
   const getTopSearch = () =>
     state.top.filter((podcast) => searchPodcast(podcast, state.search));
+
+  const getSelected = () => state.top.find(({ id }) => id === state.selected);
+
   const isExpired = () => state.expiration <= Date.now();
 
   return (
     <PodcastContext.Provider
-      value={[state, { setTop, setSearch, getTopSearch, isExpired }]}
+      value={[
+        state,
+        {
+          setTop,
+          setSearch,
+          setSelected,
+          getTopSearch,
+          getSelected,
+          isExpired,
+        },
+      ]}
     >
       {props.children}
     </PodcastContext.Provider>

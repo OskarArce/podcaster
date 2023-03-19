@@ -12,6 +12,8 @@ export type PodcastEpisodeJson = {
   trackName: string;
   description: string;
   episodeUrl: string;
+  releaseDate: string;
+  trackTimeMillis: number;
 };
 
 export type Podcast = {
@@ -27,4 +29,6 @@ export type PodcastEpisode = {
   title: string;
   description: string;
   uri: string;
+  duration: string;
+  date: string;
 };
