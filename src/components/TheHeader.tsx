@@ -6,7 +6,7 @@ export default function TheHeader() {
   const isRouting = useIsRouting();
   const location = useLocation();
   const active = (path: string) =>
-    path == location.pathname
+    path === location.pathname
       ? "bg-indigo-700"
       : "hover:bg-indigo-500 hover:bg-opacity-75";
 
@@ -21,8 +21,6 @@ export default function TheHeader() {
                 class={`${active(
                   "/"
                 )} text-white rounded-md px-3 py-2 text-sm font-medium`}
-                activeClass="bg-indigo-700"
-                inactiveClass="hover:bg-indigo-500 hover:bg-opacity-75"
                 aria-current="page"
               >
                 Podcaster

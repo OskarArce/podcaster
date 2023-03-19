@@ -70,8 +70,9 @@ export const PodcastEpisodeProvider: ParentComponent<{
   };
 
   const isSelectedExpired = () =>
-    state.expiration[state.selected]
-      ? state.expiration[state.selected] <= Date.now()
+    state.expiration[state.selected as keyof typeof state.expiration]
+      ? state.expiration[state.selected as keyof typeof state.expiration] <=
+        Date.now()
       : null;
 
   return (
