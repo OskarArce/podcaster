@@ -1,3 +1,4 @@
+import { Card } from '@podcaster/ui';
 import styles from './page.module.css';
 
 export default function Index() {
@@ -15,6 +16,11 @@ export default function Index() {
               <span> Hello there, </span>
               Welcome podcaster 👋
             </h1>
+          </div>
+
+          <div id="ui" className="rounded">
+            <h2>UI components</h2>
+            <Card title="Podcast1" />
           </div>
 
           <div id="hero" className="rounded">
