@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import Link from 'next/link';
 import { Card } from '@podcaster/ui';
 import { listPodcasts } from '@podcaster/podcasts';
 import styles from './page.module.css';
@@ -14,14 +15,13 @@ export default function Index() {
     <div className={styles.page}>
       <div className="wrapper">
         <div className="container">
-          <div id="welcome">
-            <h1>Podcaster</h1>
-          </div>
 
           <div id="podcasts" className={styles.podcasts}>
             <h2>Podcasts:</h2>
             {firstPodcasts.current.map(({ id, title }) => (
-              <Card key={id} title={title} />
+              <Link key={id} href={`/podcast/${id}`}>
+                <Card title={title} />
+              </Link>
             ))}
           </div>
         </div>

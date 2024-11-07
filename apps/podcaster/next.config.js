@@ -19,4 +19,20 @@ const plugins = [
   withNx,
 ];
 
-module.exports = composePlugins(...plugins)(nextConfig);
+module.exports = {
+  ...composePlugins(...plugins)(nextConfig),
+  async redirects() {
+    return [
+      {
+        source: '/podcast',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/podcast/:podcastId/episode',
+        destination: '/podcast/:podcastId',
+        permanent: true,
+      },
+    ];
+  },
+};
