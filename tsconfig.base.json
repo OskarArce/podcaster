@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@podcaster/podcasts": ["cores/podcasts/src/index.ts"],
+      "@podcaster/shared": ["cores/shared/src/index.ts"],
       "@podcaster/ui": ["libs/shared/ui/src/index.ts"]
     }
   },
